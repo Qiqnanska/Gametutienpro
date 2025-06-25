@@ -1,0 +1,222 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: url("background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+/* Màn hình bắt đầu */
+.start-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    text-align: center;
+}
+
+.title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.start-btn, .music-toggle-btn, .combat-action-btn, .combat-escape-btn {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+}
+
+.start-btn:hover, .music-toggle-btn:hover,
+.combat-action-btn:hover, .combat-escape-btn:hover {
+    background-color: #45a049;
+}
+
+.game-screen {
+    padding: 20px;
+}
+
+/* Thanh trạng thái */
+.stats {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.progress-bar-container {
+    width: 80%;
+    height: 20px;
+    background-color: #333;
+    border-radius: 10px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: #00bcd4;
+    transition: width 0.3s ease;
+}
+
+/* Icon info */
+.info-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+/* Nhân vật chính */
+.game-character {
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+}
+
+/* Button hành động */
+.action-buttons {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Thanh chức năng */
+.feature-bar-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.feature-bar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.feature-icons {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    top: 20px;
+    width: 100%;
+}
+
+.feature-icon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+/* Giao diện chiến đấu */
+.combat-screen {
+    display: none;
+    padding: 20px;
+    text-align: center;
+}
+
+.combat-background {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.combat-entities {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.combat-boss, .combat-player-avatar {
+    width: 120px;
+}
+
+.boss-hp-bar-container, .player-hp-bar-container {
+    background: #333;
+    width: 100px;
+    height: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.boss-hp-bar, .player-hp-bar {
+    background: red;
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+.boss-hp-text, .player-hp-text {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 14px;
+    color: white;
+}
+
+/* Popups */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.popup-content {
+    background: #222;
+    padding: 20px;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 500px;
+    color: white;
+    text-align: center;
+}
+
+.popup-content button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Toast */
+#toastContainer {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+}
