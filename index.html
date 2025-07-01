@@ -1,140 +1,69 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Tiên Nhàn Rỗi</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đại Đạo Vô Biên</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="startScreen" class="start-screen">
-        <h1 class="title">Đại Đạo Vô Biên</h1>
-        <h2 class="subtitle">Hành trình tu tiên của bạn</h2>
-        <button class="start-btn" onclick="startGame()">Bắt Đầu Tu Tiên</button>
-        <button class="music-toggle-btn" id="musicToggleBtn" onclick="toggleMusic()">Bật Nhạc</button>
+  <!-- Màn hình bắt đầu -->
+  <div id="startScreen" style="text-align: center; margin-top: 100px;">
+    <h1>Đại Đạo Vô Biên</h1>
+    <h2>Hành trình tu tiên của bạn</h2>
+    <button onclick="startGame()">Bắt Đầu Tu Tiên</button><br><br>
+    <button onclick="toggleMusic()" style="background-color: #b4e043;">cài đặt ⚙️</button>
+  </div>
+
+  <!-- Màn hình chơi game -->
+  <div id="gameScreen" style="display: none; text-align: center;">
+
+    <h2 style="font-weight: bold;">thanh kinh nghiệm</h2>
+    <div style="width: 80%; margin: auto; background-color: #ddd; height: 20px; border-radius: 10px;">
+      <div id="expProgressBar" style="height: 100%; width: 30%; background-color: #00bfff; border-radius: 10px;"></div>
+    </div>
+    
+    <br>
+
+    <div>
+      <img src="img/main_character.png" alt="Nhân vật chính" style="width: 180px;"><br>
+      <img src="img/info_icon.png" alt="Thông tin" style="width: 60px; border-radius: 50%; position: absolute; right: 20px; top: 10px;" onclick="showCharacterInfo()">
+      <div style="margin-top: 10px;">
+        <span style="border: 2px solid black; padding: 5px; border-radius: 10px;">thông tin nhân vật</span>
+      </div>
     </div>
 
-    <div id="gameScreen" class="game-screen" style="display: none;">
-        <div class="stats">
-            <p>Cảnh giới: <span id="canhGioi">Phàm Nhân</span></p>
-            <p>EXP: <span id="expText">0/100</span></p>
-            <div class="progress-bar-container">
-                <div id="expProgressBar" class="progress-bar"></div>
-            </div>
-        </div>
+    <br>
 
-        <img src="img/info_icon.png" alt="Info" class="info-icon" onclick="showCharacterInfo()">
-        
-        <img src="img/main_character.png" alt="Nhân Vật Chính" class="game-character">
-
-        <div class="action-buttons">
-            <button onclick="train()">Tu Luyện</button>
-            <button id="autoTrainBtn" onclick="toggleAutoTrain()">Tu luyện tự động</button>
-            <button onclick="startBossCombat()">Chiến Đấu</button>
-        </div>
-
-        <div class="feature-bar-container">
-            <img src="img/feature_bar_bg.png" alt="Thanh Chức Năng" class="feature-bar">
-            <div class="feature-icons">
-                <img src="img/icon_inventory.png" alt="Túi Đồ" class="feature-icon" title="Túi đồ">
-                <img src="img/icon_quest.png" alt="Nhiệm Vụ" class="feature-icon" title="Nhiệm vụ">
-                <img src="img/icon_shop.png" alt="Cửa Hàng" class="feature-icon" title="Cửa hàng">
-                <img src="img/icon_social.png" alt="Xã Giao" class="feature-icon" title="Xã giao">
-            </div>
-        </div>
+    <div>
+      <button onclick="train()" style="margin: 5px;">tu luyện</button>
+      <button onclick="toggleAutoTrain()" style="margin: 5px;">tu luyện tự động</button>
     </div>
 
-    <div id="combatScreen" class="combat-screen" style="display: none;">
-        <img src="img/combat_bg.jpg" alt="Nền Chiến Đấu" class="combat-background">
+    <br><br>
 
-        <div class="combat-entities">
-            <div class="combat-boss-area">
-                <img src="img/boss_placeholder.png" alt="Boss" class="combat-boss">
-                <div class="boss-hp-bar-container">
-                    <div id="bossHpBar" class="boss-hp-bar" data-hp-percent="100"></div>
-                    <span id="bossHpText" class="boss-hp-text"></span>
-                </div>
-            </div>
-
-            <div class="combat-player-area">
-                <img src="img/player_combat_avatar.png" alt="Người Chơi" class="combat-player-avatar">
-                <div class="player-hp-bar-container">
-                    <div id="playerCombatHpBar" class="player-hp-bar"></div>
-                    <span id="playerCombatHpText" class="player-hp-text"></span>
-                </div>
-            </div>
-        </div>
-
-        <button class="combat-action-btn" onclick="playerAttack()">Tấn Công</button>
-        <button class="combat-escape-btn" onclick="escapeCombat()">Bỏ Chạy</button>
+    <!-- Thanh chức năng -->
+    <div style="background-color: #f4b86c; padding: 10px; display: flex; justify-content: space-around;">
+      <img src="img/icon_inventory.png" alt="Túi đồ" style="width: 40px;">
+      <img src="img/icon_shop.png" alt="Cửa hàng" style="width: 40px;">
+      <img src="img/icon_quest.png" alt="Nhiệm vụ" style="width: 40px;">
+      <img src="img/info_icon.png" alt="Thông tin" style="width: 40px;">
     </div>
+  </div>
 
-    <div id="storyPopup" class="popup-overlay" style="display: none;">
-        <div class="popup-content story-popup">
-            <p id="storyText"></p>
-            <button onclick="closeStoryPopup()">Tiếp Tục</button>
-        </div>
-    </div>
+  <!-- Nhạc nền và hiệu ứng -->
+  <audio id="backgroundMusic" loop>
+    <source src="sou/bg.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="sfxLevelUp"><source src="sou/lv.mp3" type="audio/mpeg"></audio>
+  <audio id="sfxAttack"><source src="sou/tancong.mp3" type="audio/mpeg"></audio>
+  <audio id="sfxHit"><source src="sou/hit.mp3" type="audio/mpeg"></audio>
+  <audio id="sfxWin"><source src="sou/win.mp3" type="audio/mpeg"></audio>
+  <audio id="sfxLose"><source src="sou/lose.mp3" type="audio/mpeg"></audio>
 
-    <div id="npcDialoguePopup" class="popup-overlay" style="display: none;">
-        <div class="popup-content npc-dialogue-popup">
-            <img src="img/npc_dialogue_avatar.png" alt="NPC" class="npc-image">
-            <p id="npcDialogueText"></p>
-            <button onclick="closeNpcDialogue()">Đóng</button>
-        </div>
-    </div>
-
-    <div id="characterInfoPopup" class="popup-overlay" style="display: none;">
-        <div class="popup-content character-info-popup">
-            <h2>Thông Tin Nhân Vật</h2>
-            <div class="player-details">
-                <div class="info-item">
-                    <label for="playerNameInput">Tên của bạn:</label>
-                    <input type="text" id="playerNameInput" placeholder="Nhập tên nhân vật">
-                    <button onclick="savePlayerName()">Lưu Tên</button>
-                </div>
-            </div>
-            
-            <div class="character-visual-stats">
-                <img src="img/main_character_display.png" alt="Nhân Vật Chính" class="main-character-display">
-                <div class="stats-text-only">
-                    <p>Cảnh giới: <span id="infoCanhGioi">Phàm Nhân</span></p>
-                    <p>Máu: <span id="infoHP">100</span></p>
-                    <p>Năng lượng: <span id="infoMP">100</span></p>
-                    <p>Sức đánh: <span id="infoDamage">10</span></p>
-                </div>
-            </div>
-            <button onclick="closeCharacterInfo()">Đóng</button>
-        </div>
-    </div>
-
-    <div id="toastContainer"></div>
-
-    <audio id="backgroundMusic" loop>
-        <source src="sounds/background_music.mp3" type="audio/mpeg">
-        <source src="sounds/background_music.ogg" type="audio/ogg">
-        Trình duyệt của bạn không hỗ trợ thẻ audio.
-    </audio>
-
-    <audio id="sfxLevelUp">
-        <source src="sounds/levelup_sound.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="sfxAttack">
-        <source src="sounds/player_attack_sound.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="sfxHit">
-        <source src="sounds/hit_sound.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="sfxWin">
-        <source src="sounds/win_sound.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="sfxLose">
-        <source src="sounds/lose_sound.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- Các script chính -->
-    <script src="main.js" defer></script>
-    <script src="boss.js" defer></script>
+  <!-- Script game -->
+  <script src="main.js" defer></script>
+  <script src="boss.js" defer></script>
 </body>
 </html>
